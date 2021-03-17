@@ -73,6 +73,14 @@
         "optional": "cpp",
         "ratio": "cpp",
         "string_view": "cpp",
-        "unordered_map": "cpp"
+        "unordered_map": "cpp",
+        "numeric": "cpp",
+        "__tree": "cpp",
+        "map": "cpp",
+        "deque": "cpp",
+        "fstream": "cpp",
+        "regex": "cpp",
+        "set": "cpp",
+        "stack": "cpp"
     }
 }
