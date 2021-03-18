@@ -1,0 +1,9 @@
+Australia 147
+Sweden 148
+China 227
+Great_Britain 263
+Soviet_Union 440
+United_States 1022
+France 212
+Germany 275
+Italy 206
