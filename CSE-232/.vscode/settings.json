@@ -81,6 +81,9 @@
         "fstream": "cpp",
         "regex": "cpp",
         "set": "cpp",
-        "stack": "cpp"
+        "stack": "cpp",
+        "xlocbuf": "cpp",
+        "xlocmes": "cpp",
+        "xtree": "cpp"
     }
 }
