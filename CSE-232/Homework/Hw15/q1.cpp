@@ -27,17 +27,21 @@ using std::copy_if;
 #include <iterator>
 using std::back_inserter;
 
-string Lookup(vector<string> words, vector<int> indicies){
-    string out;
-
-    generate(indicies.begin(), indicies.end(), [&words, &out](){
-        out += words.at(arg);
-        return arg;
-    });
-
-    return out;
+void test_output(const string out){
     cout << "Output: ";
     cout << out << '\n';
+}
+
+string Lookup(const vector<string> &words, const vector<int> &indicies){
+    string out;
+    // iterate over every val in index
+    for (int elem: indicies){
+        out += words.at(elem); // add the words at that element to new str
+        out += ' ';
+    } 
+    
+    // test_output(out);
+    return out;
 
 } // fn
 

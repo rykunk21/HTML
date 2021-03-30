@@ -1,9 +1,12 @@
 ##############################################################################
 TRANSFORM
-template <class InputIterator, class OutputIterator, class UnaryOperator>
-  OutputIterator transform (InputIterator first1, InputIterator last1,
-                            OutputIterator result, UnaryOperator op)
-{
+TRANSFORM BINARY
+template <class InputIterator1, class InputIterator2,
+          class OutputIterator, class BinaryOperation>
+  OutputIterator transform (InputIterator1 first1, InputIterator1 last1,
+                            InputIterator2 first2, OutputIterator result,
+                            BinaryOperation binary_op);
+
   while (first1 != last1) {
     *result = op(*first1);  // or: *result=binary_op(*first1,*first2++);
     ++result; ++first1;
@@ -11,3 +14,4 @@ template <class InputIterator, class OutputIterator, class UnaryOperator>
   return result;
 }
 ##############################################################################
+

@@ -8,29 +8,51 @@ add because 6+1 appears in it".
 
 */
 #include <cassert>
+#include <string>
+using std::string; using std::to_string;
+#include <iostream>
 #include <stdexcept>
-
+#include <vector>
+using std::vector;
 
 int safe_add(int num1, int num2){
+    int sum = num1 + num2;
     
+    // from http://www.cplusplus.com/reference/string/to_string/
+    // to_string() takes a numerical value and returns the string equivilant
+
+    vector<string> strings_to_test = {to_string(num1), to_string(num2), 
+                                      to_string(sum)};
+    for (string word: strings_to_test){
+        for (char character : word){
+            if (character == '7'){
+                throw std::runtime_error("can't add because 6+1 appears in it");
+            }
+        }
+    }
+    return sum;
 }
 
 
-void testing(){
+void test1(){
 
     const int x = 10, y = 99;
     int result = safe_add(x, y);
     int expected = 109;
     assert(result == expected); 
 
-
-    const int x = 10, y = 60;
     //ASSERT_THROW(safe_add(x, y), std::runtime_error);
-    int result = safe_add(66, 30);
-    int expected = 96;
+    result = safe_add(66, 30);
+    expected = 96;
+    assert(result == expected); 
 
-    #include <stdexcept>
-    #include <string>
+
+
+}
+
+
+void test2(){
+
     const int x = 170, y = 10;
     // ASSERT_THROW(safe_add(x, y), std::runtime_error);
     try {
@@ -44,6 +66,10 @@ void testing(){
     }
 
 int main(){
-    testing();
+    std::cout << "Test1:\n\n";
+    test1();
+
+    std::cout << "\n\nTest2:\n\n";
+    test2();
 
 }

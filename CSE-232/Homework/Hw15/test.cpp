@@ -20,24 +20,23 @@ string remove_duplicate(string og){
 
             // if the char is already in the new string, note existance and break
             if (og.at(i) == out.at(j)){
-                exists = true;
-                break;
+                
             }
         }
 
         // add the element if it doesnt exist
-        if (exists == false){
-            out += og.at(i);
-        }
-        exists = false;
+        if (exists == false)
+        out += og.at(i);
+        
+        
     }
     return out;
 }
 
 
 int main(){
-    string in = remove_duplicate("AABBCCDDDDNEW");
-    string expected = "ABCDNEW";
+    string in = remove_duplicate("AABBCAB");
+    string expected = "ABC";
 
     cout << in << '\n';  // ABCNEW
 
