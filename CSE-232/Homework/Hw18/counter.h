@@ -27,13 +27,21 @@ class Counter{
     private:
         int initial_int_=0;
         int value_=0;
+        
     public:
+        int cout_value(){return value_;};
+        int cout_initial(){return initial_int_;};
+
         vector<string> log_={};
 
         Counter(const int& num);
         int value();
         void log(const string& operation, const int& value);
+
+        
+
         friend ostream& operator<<(ostream&, const Counter&);
+        friend Counter operator+(const Counter&, const Counter&);
 };
 
 ostream& operator<<(ostream&, const Counter&);

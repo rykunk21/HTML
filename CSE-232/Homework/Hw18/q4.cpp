@@ -18,7 +18,78 @@ Next implement the + operator when returns a new counter that has an initial
 value and current values that is the sum of the two counters' data members.
 
 */
+/*
+Write a class called Counter, that has a constructor that takes an int. It 
+has a member function called "value" (no parameters), which returns an int 
+that initially is the int it was constructed with. However, each time this 
+function is invoked, the value is decremented. Be sure the constructor and the 
+getter method are the only public members of the class.
+
+The files counter.cpp and counter.h are where you should place your 
+implementation and header content.
+
+*/
+
+#include <iostream>
+#include <string>
+#include <cassert>
+#include "counter.h"
+using std::literals::operator""s;
+#include "mimir_testing.h"
+
+ostream& operator<<(ostream& out, Counter &count){
+    count.log("<<", 0);
+    out << "Counter(" << count.cout_initial() << ")@" << count.cout_value();
+    return out;
+}
+
+Counter operator+(const Counter& c1, const Counter& c2){
+    Counter out(0);
+    out.initial_int_ = c1.initial_int_ + c2.initial_int_;
+    out.value_ = c1.value_ + c2.value_;
+    return out;
+}
+
+Counter::Counter(const int& num){
+    this->log("Constructor", num);
+    initial_int_ = num;
+    value_ = num;
+};
+
+int Counter::value() {
+    this->log("value", value_);
+
+    return value_--;
+};
+
+
+void Counter::log(const string& operation, const int& value){
+    ostringstream oss;
+    if (operation == "Constructor"){
+        oss << "Constructor called with a " << value;
+    } else if (operation == "value"){
+        oss << "value called. Returned a " << value;
+    } else {
+        oss << "<< called.";
+    }
+    
+    this->log_.push_back(oss.str());
+}
+
 
 int main(){
-    
-}
+        
+    Counter c(9);
+    std::vector<std::string> expected = {"Constructor called with a 9"};
+    ASSERT_EQ(expected, c.log_);
+    ASSERT_EQ(c.value(), 9);
+    std::vector<std::string> expected2 = {
+    "Constructor called with a 9",
+    "value called. Returned a 9"
+    };
+    ASSERT_EQ(expected2, c.log_);
+    ASSERT_EQ(c.value(), 8);
+    ASSERT_EQ(c.value(), 7);
+    ASSERT_EQ("value called. Returned a 7"s, c.log_.back());
+
+    }
