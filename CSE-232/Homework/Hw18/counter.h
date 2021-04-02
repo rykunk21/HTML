@@ -11,7 +11,6 @@ implementation and header content.
 
 */
 
-
 #pragma once
 
 #include <string>
@@ -22,25 +21,39 @@ using std::vector;
 using std::ostringstream;
 #include <iostream>
 using std::ostream;
+#include <iostream>
+#include <string>
+#include <cassert>
+using std::literals::operator""s;
+#include "mimir_testing.h"
+
 
 class Counter{
     private:
+        // private data members
         int initial_int_=0;
         int value_=0;
-        
-    public:
-        int cout_value(){return value_;};
-        int cout_initial(){return initial_int_;};
+        void log(const string& operation);
 
+    public:
+        // public data member
         vector<string> log_={};
 
+        //constructor
+        Counter();
         Counter(const int& num);
-        int value();
-        void log(const string& operation, const int& value);
+        Counter(const Counter &c);
 
+        //member function
+        int value();
+        Counter &operator=(const Counter&);
         
 
-        friend ostream& operator<<(ostream&, const Counter&);
+        // destructor
+        ~Counter(){};
+
+        // friend functions
+        friend ostream& operator<<(ostream&, Counter&);
         friend Counter operator+(const Counter&, const Counter&);
 };
 

@@ -17,7 +17,7 @@ implementation and header content.
 using std::literals::operator""s;
 #include "mimir_testing.h"
 
-ostream& operator<<(ostream& out, const Counter &count){
+ostream& operator<<(ostream& out, Counter &count){
     count.log("<<",0);
     out << "Counter(" << count.initial_int_ << ")@" << count.value_;
     return out;

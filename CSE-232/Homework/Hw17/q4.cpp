@@ -53,7 +53,7 @@ using std::back_inserter;
 
 int CloseEnough(const vector<string> v1, const int difference){
     vector<char> comp;
-    vector<stirng> dead;
+    vector<string> dead;
     adjacent_difference(v1.begin(), v1.end(), back_inserter(dead),
       [difference](string arg1, string arg2){
       sort(arg1.begin(), arg1.end());

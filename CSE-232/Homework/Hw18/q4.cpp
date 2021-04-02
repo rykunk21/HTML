@@ -39,7 +39,7 @@ using std::literals::operator""s;
 
 ostream& operator<<(ostream& out, Counter &count){
     count.log("<<", 0);
-    out << "Counter(" << count.cout_initial() << ")@" << count.cout_value();
+    out << "Counter(" << count.initial_int_ << ")@" << count.value_;
     return out;
 }
 
