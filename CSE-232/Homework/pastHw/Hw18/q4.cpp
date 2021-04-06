@@ -57,7 +57,7 @@ Counter::Counter(const int& num){
 };
 
 int Counter::value() {
-    this->log("value", value_);
+    this->log("value");
 
     return value_--;
 };

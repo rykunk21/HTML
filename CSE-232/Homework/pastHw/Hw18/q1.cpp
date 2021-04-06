@@ -24,8 +24,7 @@ using std::vector;
 #include <cassert>
 #include <algorithm>
 using std::sort; using std::min_element;
-#include <iterator>
-using std::back_inserter;
+
 
 
 ostringstream get_inp(string filename){
@@ -102,8 +101,6 @@ ostringstream insertion_sort(vector<int> &v){
             
             
             while(*ptr >= *left_elem){
-                ptr -= 1;
-                left_elem += 1;
                 swap(*ptr, *left_elem);
                 print(v, oss);
                 left_elem = ptr-1;
@@ -111,7 +108,7 @@ ostringstream insertion_sort(vector<int> &v){
             i++;
             ptr = v.begin() + i;
             cout << "Value at " << i << ": " << *ptr << std::endl;
-            assert(false);
+            assert(false && "FORCED");
         }
     }
 
