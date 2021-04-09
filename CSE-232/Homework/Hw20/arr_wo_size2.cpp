@@ -8,8 +8,18 @@ Write the "copy_stock_prices" like before, but the first element contains the
 number of prices in the array, only copy those. 
 */
 #include "mimir_testing.h"
+#include <iostream>
+using std::cout; using std::cin; using std::endl;
+#include <cassert>
 
 void copy_stock_prices(double* source, double* dest){
+    int range = *source; // obtain the range
+    *dest = *(source++);
+    dest++;
+    for (int i=0; i<range; i++){
+        *dest = *source;
+        source++; dest++; // increment both pointers
+    }
 
 } // copy_stock_prices
 
@@ -20,7 +30,7 @@ int main(){
     double expected[SIZE] = {3, 13.4, 7, 11, 4, 5, 6, 7};
     copy_stock_prices(source, destination);
     for (int i = 0; i < SIZE; ++i) {
-    ASSERT_EQ(expected[i], destination[i]);
+        ASSERT_EQ(expected[i], destination[i]);
     }
 
 } // main

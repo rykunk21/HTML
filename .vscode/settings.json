@@ -85,6 +85,8 @@
         "stack": "cpp",
         "string_view": "cpp",
         "unordered_map": "cpp",
-        "filesystem": "c"
+        "filesystem": "c",
+        "random": "cpp",
+        "__functional_03": "cpp"
     }
 }

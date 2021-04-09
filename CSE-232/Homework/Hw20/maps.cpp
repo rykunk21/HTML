@@ -22,23 +22,53 @@ using std::map; using std::multimap;
 using std::set;
 #include <string>
 using std::string;
+#include <utility>
+using std::pair;
 #include "mimir_testing.h"
 
-set<string> only_once(const map<string, int>& wcounts){
+set<string> only_once(const map<string, int>& m){
     set<string> out;
-
+    for (auto elem : m){
+        if (elem.second == 1){
+            out.insert(elem.first);
+        }
+    }
     return out;
 }
 
 multimap<int, string> count_to_words(const map<string, int>& m){
     multimap<int, string> out;
-
+    for (auto elem: m){
+        pair<int, string> add (elem.second, elem.first);
+        out.insert(add);
+    }
     return out;
 }
 
+/*
 map<int, set<string>> count_to_set(const map<string, int>& m){
     map<int, set<string>> out;
+    multimap<int, string> words = count_to_words(m);
+    for (auto elem: m){
+        set<string> add;
+        multimap<int, string>::iterator it = words.find(elem.second);
+        while((*it).first == elem.second){
+            add.insert((*it).second);
+            it++;
+        }
+        pair<int, set<string>> out_elem (elem.second, add);
+        out.insert(out_elem);
+    }
+    return out;
+}
+*/
 
+map<int, set<string>> count_to_set(const map<string, int>& m){
+    map <int, set<string>> out;
+    for (auto elem: m){
+        out[elem.second].insert(elem.first);
+    }
+    
     return out;
 }
 
@@ -59,13 +89,13 @@ void t1(){
 
 void t2(){
     const map<string, int> word_counts = {
-	{"josh", 2},
-	{"smart", 1},
-	{"cse", 8},
-	{"ferret", 1},
-	{"politics", 0},
-	{"C++", 1},
-    };
+        {"josh", 2},
+        {"smart", 1},
+        {"cse", 8},
+        {"ferret", 1},
+        {"politics", 0},
+        {"C++", 1},
+        };
     multimap<int, string> expected = {
         {0, "politics"},
         {1, "C++"},
@@ -80,13 +110,13 @@ void t2(){
 
 void t3(){
     const map<string, int> word_counts = {
-	{"josh", 2},
-	{"smart", 1},
-	{"cse", 8},
-	{"ferret", 1},
-	{"politics", 0},
-	{"C++", 1},
-    };
+        {"josh", 2},
+        {"smart", 1},
+        {"cse", 8},
+        {"ferret", 1},
+        {"politics", 0},
+        {"C++", 1},
+        };
     map<int, set<string>> expected = {
         {0, {"politics"}},
         {1, {"C++", "ferret", "smart"}},
@@ -98,5 +128,7 @@ void t3(){
 }
 
 int main(){
-
+    t1();
+    t2();
+    t3();
 } // main

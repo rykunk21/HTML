@@ -3,7 +3,7 @@ testing for two_or_less.cpp
 */
 #include "two_or_less.hpp"
 #include "mimir_testing.h"
-
+#include <iostream>
 void insert(){
     TwoOrLess thing;
     thing.insert(1);
@@ -72,6 +72,7 @@ void return_pair(){
     TwoOrLess thing;
     auto p = thing.insert(4);
     ASSERT_EQ(p.second, true);
+    cout << *p.first << endl;
     ASSERT_EQ(*p.first, 4);
     auto p2 = thing.insert(4);
     ASSERT_EQ(p2.second, true);
@@ -84,7 +85,18 @@ void return_pair(){
 
 }
 
-
 int main(){
+    cout << "TEST1: " << endl;
+    insert();
+    cout << "TEST2: " << endl;
+    insert_and_size();
+    cout << "TEST3: " << endl;
+    insert_size_count();
+    cout << "TEST4: " << endl;
+    insert_size_count2();
+    cout << "TEST5: " << endl;
+    return_pair();
+
+
 }
 

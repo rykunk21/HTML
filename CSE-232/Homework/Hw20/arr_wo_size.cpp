@@ -17,9 +17,16 @@ the valid data (and the terminating value).
 */
 
 #include "mimir_testing.h"
+#include <iostream>
+using std::cout; using std::cin; using std::endl;
+#include <cassert>
 
 void copy_stock_prices(double* source, double* dest){
-    
+    for(; *source >= 0; ++source){
+        *dest = *source;
+        ++dest;
+    }
+    *dest = *source;
 } // copy_stock_prices
 
 int main(){

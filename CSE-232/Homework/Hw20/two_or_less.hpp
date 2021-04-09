@@ -7,13 +7,24 @@ duplicates of an int. You need to support the insert, count, and size
 methods with the same parameters and return types as the set<int> class 
 (see test cases).
 */
+#pragma once
 
 #include <utility>
 using std::pair;
+#include <vector>
+using std::vector;
+#include <algorithm>
+#include <iostream>
+using std::cout; using std::cin; using std::endl;
+
 
 class TwoOrLess{
+    vector<int> values_={};
 public:
-    pair<int*, bool> insert(int arg);
-    int size();
-    int count(int arg);
+    TwoOrLess() = default;
+
+    pair<int*, bool> insert(const int& arg);
+    int size() const;
+    int count(const int &arg) const;
+
 };
