@@ -15,7 +15,8 @@
 #include <string>
 
 #include "Position.h"
-
+#include "utility.h"
+#include "Ship.h"
 
 using namespace std;
 
@@ -102,7 +103,8 @@ class Player {
     /**
      * Requires: pos is a valid position.
      * Modifies: opponent, guess_grid, cout.
-     * Effects:  If the pos is part of an opponent's ship that hasn't been hit yet, hit that ship and mark both the
+     * Effects:  If the pos is part of an opponent's ship that hasn't been hit yet, 
+     *           hit that ship and mark both the
      *           opponent's grid and the current player's guess_grid as
      *           HIT_LETTER at pos.
      *

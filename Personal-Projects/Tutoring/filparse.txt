@@ -1,0 +1,35 @@
+
+#include <string>
+using std::string;
+#include <fstream>
+using std::ifstream;
+
+string accept = "1234567890ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+ifstream fin;
+fin.open(filename);
+assert(f.is_open());
+
+char hold;
+char first_cord;
+char second_cord;
+array[4]
+
+while (read char into hold){
+    if hold not in accept
+        continue
+    if it is:
+        put the value into a array
+    if array length is 4
+        break
+}
+
+for values in array (p1c1, p1c2, p2c1, p2c2)
+
+pos1(p1c1, p1c2);
+pos2(p2c1, p2c2);
+
+Ship new_ship(pos1, pos2)
+
+// (*this).add_ship();
+
+*object* add_ship(new_ship)
