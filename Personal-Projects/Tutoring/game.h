@@ -17,7 +17,6 @@
 #include "Position.h"
 #include "Ship.h"
 #include "Player.h"
-#include "utility.h"
 
 
 class Game {

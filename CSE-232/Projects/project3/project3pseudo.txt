@@ -1,0 +1,47 @@
+Project 3 Pseudo Code
+
+Create a data type that allows users to initiate and make trades on a
+simulated "exchange"
+    initialize data structure to hold user information
+        user name
+        assets
+    
+    initalize data structure for open sell orders
+    initalize data structure for open buy orders
+    
+    allow user to make one of the following decisions
+        Exchange Member Functions:
+            MakeDeposit: 
+                recieve a username (e.g. "Nahum"), 
+                an asset (e.g. "BTC"), and an amount (e.g. 100). 
+                store the information that the deposit occured to a 
+                "user's portfolio"
+                if new user is added to user information
+                    sort the users by users name, then asset:
+                    EX:
+                        
+                        "Dolson's Portfolio: 70 ETH, 600 USD, "
+                        "Nahum's Portfolio: 10 BTC, 4 ETH, 9000 USD, "
+                        "Ofria's Portfolio: 100 BTC,
+
+            PrintUserPortfolios:
+                print "User Portfolios (in alphabetical order):"
+                print all the users in portfolio
+                dont print asset if its involved in an open order
+            MakeWithdrawl: 
+                withdrawl funds of the specified type if avaliable
+                return if the withdrawl was successful (True or False)
+
+            AddOrder: 
+                function accepts an order (defined in utility.h) and
+                adds the order to the corresponding structure
+                if the order is a buy order,
+                    check that the funds are sufficient
+                    remove amount from user portfolio
+                
+                return if order was successfull (True or False) 
+            PrintUserOrders:
+                
+            PrintTradeHistory: 
+
+            PrintBidAskSpread:

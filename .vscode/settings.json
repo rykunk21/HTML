@@ -87,6 +87,8 @@
         "unordered_map": "cpp",
         "filesystem": "c",
         "random": "cpp",
-        "__functional_03": "cpp"
+        "__functional_03": "cpp",
+        "cassert": "cpp",
+        "list": "cpp"
     }
 }

@@ -85,6 +85,7 @@
         "xlocbuf": "cpp",
         "xlocmes": "cpp",
         "xtree": "cpp",
-        "filesystem": "cpp"
+        "filesystem": "cpp",
+        "random": "cpp"
     }
 }
