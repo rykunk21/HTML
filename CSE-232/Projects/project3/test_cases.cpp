@@ -1,6 +1,5 @@
 #include "exchange.h"
-#include "mimir_testing.h"
-using std::literals::operator""s;
+
 #include <iostream>
 #include <sstream>
 #include <string>

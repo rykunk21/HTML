@@ -36,8 +36,9 @@ simulated "exchange"
                 function accepts an order (defined in utility.h) and
                 adds the order to the corresponding structure
                 if the order is a buy order,
-                    check that the funds are sufficient
-                    remove amount from user portfolio
+                    try to withdraw the account (returns a boolean for success)
+                else if the order is sell order
+                    check that 
                 
                 return if order was successfull (True or False) 
             PrintUserOrders:
