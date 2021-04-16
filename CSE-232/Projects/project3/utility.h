@@ -1,21 +1,25 @@
 #pragma once
 #include <iostream>
+using std::cout; using std::cin; using std::endl;
 #include <string>
 #include <vector>
 #include <utility>
 #include <string>
 #include <map>
+#include <cassert>
+#include <algorithm>
+#include <iomanip>
+
+#include "mimir_testing.h"
+using std::literals::operator""s;
 
 
 struct Asset {
   std::string name;
   int volume;
-
   Asset() = default;
   Asset(std::string name_, int volume_) : name(name_), volume(volume_){};
-
-  int GetPrice();
-
+  friend std::ostream& operator<<(std::ostream& oss, const Asset& o);
 };
 
 
@@ -34,6 +38,8 @@ struct Order {
           asset = Asset(asset_, volume_);
           price = price_;
         }
+
+  friend std::ostream& operator<<(std::ostream& oss, const Order& o);
 };
 
 struct Trade {
@@ -53,4 +59,7 @@ struct Trade {
         }
 };
 
+
+std::ostream& operator<<(std::ostream& oss, const Order& o);
+std::ostream& operator<<(std::ostream& oss, const Asset& o);
 

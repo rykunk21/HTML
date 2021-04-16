@@ -1,36 +1,71 @@
 #include "exchange.h"
 
-bool Exchange::UserExists(const std::string& name){
-    for (User usr: users_){
-        if (usr.name == name){
-            return true;
-        }
-    }
-    return false;
+
+void Exchange::Sort(){
+    // std::sort()
 }
 
+Account* Exchange::GetUser(const std::string& name){
+    // get a reference to the user object in users_ to be mutated
 
-void Exchange::MakeDeposit(const std::string &username, const std::string &asset_,
-                 int amount){
-    User usr(username);
-    if (!UserExists(username)){
-        users_.push_back(usr);
+    for (Account& usr: users_){
+        if (usr.name() == name){
+            return &usr;
+        }
     }
-    Asset asset(asset_, amount);
+    Account usr(name);
+    users_.push_back(usr);
+    return GetUser(usr.name()); // recursively return user
     
-    std::cout << usr.deposit(asset).name << std::endl;
+}
 
+void Exchange::MakeDeposit(const std::string &username, 
+                           const std::string &asset_name, int amount){
+    // deposit the asset into the users portfolio
+    Account* usr = GetUser(username);
+    
+    Asset asset(asset_name, amount);
+    asset = usr->Deposit(asset);
 
 }
 
 void Exchange::PrintUserPortfolios(std::ostream &os) const{
+        for (Account usr: users_){
+            os << usr << std::endl;
+        }
 
 }
-bool Exchange::MakeWithdrawal(const std::string &username, const std::string &assent,
-                    int amount){
-    return false;
+bool Exchange::MakeWithdrawal(const std::string &username, 
+                              const std::string &asset_name, int amount){
+    Account* usr = GetUser(username);
+    Asset asset(asset_name, amount);
+    return !usr->Withdraw(asset);
+
+    
 }
+
+bool Exchange::MakeWithdrawal(const std::string &username, Asset asset){
+    Account* usr = GetUser(username);
+    return !usr->Withdraw(asset);
+
+    
+}
+
 bool Exchange::AddOrder(const Order &order){
+    // check side first
+    Account* usr = GetUser(order.username);
+    Asset asset = order.asset;
+
+    if (order.side == "Buy"){
+        if (this->MakeWithdrawal(order.username, asset)){
+            usr->SufficientAsset(asset);
+        } else {
+           
+        }
+    } else if (order.side == "Sell"){
+
+    }
+
     return false;
 }
 

@@ -6,6 +6,9 @@
 #include "exchange.h"
 #include "useraccount.h"
 #include "utility.h"
+#include "test_cases.cpp"
+
+#include <cassert>
 
 int main_test() {
   std::cout << "start" << std::endl;
@@ -63,6 +66,15 @@ int main_test() {
 }
 
 int main(){
-  Exchange e;
-  e.MakeDeposit("Nahum", "USD", 1000);
+  // main_test();
+  Exchange msu_base;
+  msu_base.MakeDeposit("Nahum", "USD", 1000);
+  msu_base.MakeDeposit("Nahum", "ETH", 400);
+  msu_base.MakeDeposit("Dolson", "BTC", 100);
+  msu_base.MakeDeposit("Dolson", "USD", 7000);
+  msu_base.MakeDeposit("Enbody", "USD", 7000);
+  msu_base.MakeDeposit("Ofria", "BCH", 9);
+
+  Order o_n{"Nahum", "Buy", "BTC", 2, 22};
+  msu_base.AddOrder(o_n);
 }
