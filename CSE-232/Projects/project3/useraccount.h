@@ -9,8 +9,7 @@ class Account {
         std::vector<Order> openOrders_;
         std::vector<Trade> tradeHistory_;
         void Sort(); // this is gonna suck
-        template <typename T>
-        T* Find(const T& arg);
+        Asset Find(const Asset& arg);
     public:
         // getters
         std::string name() const {return name_;};
@@ -29,6 +28,7 @@ class Account {
         
         // methods
             // funcitonal
+        void 
         Asset Deposit(const Asset& asset);
         bool Withdraw(const Asset& asset);
         bool SufficientAsset(const Asset& asset);

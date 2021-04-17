@@ -1,19 +1,13 @@
 #include "useraccount.h"
 
-template <typename T>
-T* Account::Find(const T& arg){
-    T* out();
-    Asset a();
-    cout << a.name() << endl;
-
-    // if (out->name() == a.name()){
-    //     cout << "Correct Type" << endl;
-    // }
-    return out;
-}
-
 bool Account::SufficientAsset(const Asset& asset){
-    Asset* find = Find<Asset>(asset);
+    // check if the user has the volume of the corresponding asset
+    for (Asset& a: assets_){
+        if(a.name == asset.name && a.volume >= asset.volume){
+            return true;
+        }
+    }
+    return false;
 }
 
 Asset Account::Deposit(const Asset& asset){

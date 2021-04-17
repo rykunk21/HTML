@@ -46,9 +46,16 @@ bool Exchange::MakeWithdrawal(const std::string &username,
 
 bool Exchange::MakeWithdrawal(const std::string &username, Asset asset){
     Account* usr = GetUser(username);
-    return !usr->Withdraw(asset);
+    return usr->Withdraw(asset);
 
     
+}
+
+void Exchange::ExecuteTrade(){
+    // Execute a trade, optimize data
+
+
+
 }
 
 bool Exchange::AddOrder(const Order &order){
@@ -56,14 +63,28 @@ bool Exchange::AddOrder(const Order &order){
     Account* usr = GetUser(order.username);
     Asset asset = order.asset;
 
+    // Buy
     if (order.side == "Buy"){
-        if (this->MakeWithdrawal(order.username, asset)){
-            usr->SufficientAsset(asset);
-        } else {
-           
-        }
-    } else if (order.side == "Sell"){
+        Asset total("USD", (order.asset.volume * order.price));
+        usr->PrintAssets(cout);
+        if (MakeWithdrawal(order.username, total)){
+            usr->PrintAssets(cout);
+            cout << "SCOPE" << endl;
+            buyOrders_.push_back(order);
+            ExecuteTrade();
 
+        } else {
+            return false;
+        }
+
+    // Sell
+    } else if (order.side == "Sell"){
+        if (usr->SufficientAsset(asset)){
+            sellOrders_.push_back(order);
+            ExecuteTrade();
+        } else {
+            return false;
+        }
     }
 
     return false;

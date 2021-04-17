@@ -28,6 +28,7 @@ int main_test() {
   std::cout << "Before 1st add order" << std::endl;
 
   msu_base.AddOrder(o_n);
+  // complete
   std::cout << "After 1st add order" << std::endl;
   msu_base.PrintUsersOrders(std::cout);
 
@@ -75,6 +76,6 @@ int main(){
   msu_base.MakeDeposit("Enbody", "USD", 7000);
   msu_base.MakeDeposit("Ofria", "BCH", 9);
 
-  Order o_n{"Nahum", "Buy", "BTC", 2, 22};
+  Order o_n{"Nahum", "Buy", "BTC", 10, 100};
   msu_base.AddOrder(o_n);
 }

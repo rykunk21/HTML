@@ -15,3 +15,5 @@ std::ostream& operator<<(std::ostream& oss, const Asset& a){
     
     return oss;
 }
+
+

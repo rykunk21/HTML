@@ -17,8 +17,9 @@ using std::literals::operator""s;
 struct Asset {
   std::string name;
   int volume;
-  Asset() = default;
+  Asset() : name(""), volume(0){};
   Asset(std::string name_, int volume_) : name(name_), volume(volume_){};
+  bool operator==(const Asset& other);
   friend std::ostream& operator<<(std::ostream& oss, const Asset& o);
 };
 
