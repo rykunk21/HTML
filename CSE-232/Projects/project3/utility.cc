@@ -16,4 +16,11 @@ std::ostream& operator<<(std::ostream& oss, const Asset& a){
     return oss;
 }
 
+bool Order::Match(const Order& other){
+    // find a matching Order for the argument
+    return (other.side != side) && (other.asset.name == asset.name)
+                  && (other.price == price);
+
+  
+}
 

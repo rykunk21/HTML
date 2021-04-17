@@ -1,5 +1,16 @@
 #include "useraccount.h"
 
+void Account::OpenOrder(const Order& order){
+    openOrders_.push_back(order);
+
+}
+
+void Account::CloseOrder(const Order& order){
+
+}
+
+
+
 bool Account::SufficientAsset(const Asset& asset){
     // check if the user has the volume of the corresponding asset
     for (Asset& a: assets_){
@@ -22,9 +33,13 @@ Asset Account::Deposit(const Asset& asset){
 }
 
 bool Account::Withdraw(const Asset& asset){
-    for (Asset& a: assets_){
+    for (auto ptr = assets_.begin(); ptr != assets_.end(); ++ptr){
+        Asset a = *ptr;
         if (a.name == asset.name && a.volume >= asset.volume){
             a.volume -= asset.volume;
+            if (a.volume == 0){
+                assets_.erase(ptr);
+            }
             return true;
         }
     }

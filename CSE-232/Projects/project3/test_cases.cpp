@@ -195,29 +195,31 @@ void addOrderExactComplete(){
     e.PrintUsersOrders(std::cout);
     oss.str("");
     e.PrintUsersOrders(oss);
-    ASSERT_EQ(oss.str(), "Users Orders (in alphabetical order):\nDolson's "
-                         "Open Orders (in chronological order):\nDolson's "
-                         "Filled Orders (in chronological order):\nNahum's "
-                         "Open Orders (in chronological order):\nSell 5 BTC "
-                         "at 100 USD by Nahum\nNahum's Filled Orders "
-                         "(in chronological order):\n");
+    ASSERT_EQ(oss.str(), "Users Orders (in alphabetical order):\n"
+                         "Dolson's Open Orders (in chronological order):\n"
+                         "Dolson's Filled Orders (in chronological order):\n"
+                         "Nahum's Open Orders (in chronological order):\n"
+                            "Sell 5 BTC at 100 USD by Nahum\n"
+                         "Nahum's Filled Orders (in chronological order):\n");
     std::cout << std::endl << std::endl;
     assert(e.AddOrder({"Dolson", "Buy", "BTC", 5, 100}));
     // This trade exactly matches Nahum's Sell
     e.PrintUserPortfolios(std::cout);
     oss.str("");
     e.PrintUserPortfolios(oss);
-    ASSERT_EQ(oss.str(), "User Portfolios (in alphabetical order):\nDolson's "
-                         "Portfolio: 5 BTC, 5055 USD, \nNahum's Portfolio: 5 BTC, 500 USD, \n");
+    ASSERT_EQ(oss.str(), "User Portfolios (in alphabetical order):\n"
+                         "Dolson's Portfolio: 5 BTC, 5055 USD, \n"
+                         "Nahum's Portfolio: 5 BTC, 500 USD, \n");
     e.PrintUsersOrders (std::cout);
     oss.str("");
     e.PrintUsersOrders (oss);
-    ASSERT_EQ(oss.str(), "Users Orders (in alphabetical order):\nDolson's "
-                         "Open Orders (in chronological order):\nDolson's "
-                         "Filled Orders (in chronological order):\nBuy 5 BTC "
-                         "at 100 USD by Dolson\nNahum's Open Orders "
-                         "(in chronological order):\nNahum's Filled Orders "
-                         "(in chronological order):\nSell 5 BTC at 100 USD by Nahum\n");
+    ASSERT_EQ(oss.str(), "Users Orders (in alphabetical order):\n"
+                         "Dolson's Open Orders (in chronological order):\n"
+                         "Dolson's Filled Orders (in chronological order):\n"
+                         "Buy 5 BTC at 100 USD by Dolson\n"
+                         "Nahum's Open Orders (in chronological order):\n"
+                         "Nahum's Filled Orders (in chronological order):\n"
+                         "Sell 5 BTC at 100 USD by Nahum\n");
 }
 
 void addOrderExactIncomplete(){

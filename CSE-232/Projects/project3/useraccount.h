@@ -28,10 +28,11 @@ class Account {
         
         // methods
             // funcitonal
-        void 
         Asset Deposit(const Asset& asset);
         bool Withdraw(const Asset& asset);
         bool SufficientAsset(const Asset& asset);
+        void OpenOrder(const Order& order);
+        void CloseOrder(const Order& order);
 
             //display
         void PrintOpenOrders();
@@ -42,6 +43,7 @@ class Account {
         Account() = default;
         Account(std::string name){name_ = name;};
  
+        // friend function
         friend std::ostream& operator<<(std::ostream& oss, const Account& usr);
 };
 

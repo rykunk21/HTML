@@ -47,31 +47,53 @@ bool Exchange::MakeWithdrawal(const std::string &username,
 bool Exchange::MakeWithdrawal(const std::string &username, Asset asset){
     Account* usr = GetUser(username);
     return usr->Withdraw(asset);
-
-    
 }
 
-void Exchange::ExecuteTrade(){
+bool Exchange::FindMatch(Order* find ,const Order& order){
+
+
+    if (order.side == "Sell"){
+        for (Order& existing: buyOrders_){
+            if (existing.Match(order)){
+                *find = existing;
+                return true;
+            }
+        }
+    } else if (order.side == "Buy") {
+        for (Order& existing: sellOrders_){
+            if (existing.Match(order)){
+                *find = existing;
+                return true;
+            }
+        }
+    }
+    return false;
+}
+
+
+void Exchange::ExecuteTrade(Account* usr, const Order* order, const Order* match){
     // Execute a trade, optimize data
-
-
+    cout << "Trade is down to get smacked" << endl;
 
 }
 
 bool Exchange::AddOrder(const Order &order){
-    // check side first
     Account* usr = GetUser(order.username);
     Asset asset = order.asset;
+     // determine if theres a matching o
 
     // Buy
     if (order.side == "Buy"){
         Asset total("USD", (order.asset.volume * order.price));
-        usr->PrintAssets(cout);
-        if (MakeWithdrawal(order.username, total)){
-            usr->PrintAssets(cout);
-            cout << "SCOPE" << endl;
-            buyOrders_.push_back(order);
-            ExecuteTrade();
+        if (usr->SufficientAsset(total)){ // user can propose the trade
+            usr->OpenOrder(order); // mark the trade as open for the user
+            Order match;
+            if (FindMatch(&match, order)){
+                ExecuteTrade(usr, &order, &match);
+            } else {
+                buyOrders_.push_back(order);
+                cout << "Nobody willing to sell rn" << endl;
+            }
 
         } else {
             return false;
@@ -80,8 +102,13 @@ bool Exchange::AddOrder(const Order &order){
     // Sell
     } else if (order.side == "Sell"){
         if (usr->SufficientAsset(asset)){
-            sellOrders_.push_back(order);
-            ExecuteTrade();
+            Order match;
+            if (FindMatch(&match, order)){
+                ExecuteTrade(usr, &order, &match);
+            } else {
+                sellOrders_.push_back(order);
+                cout << "We cant buy rn" << endl;
+            }
         } else {
             return false;
         }

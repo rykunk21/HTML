@@ -11,20 +11,26 @@ class Exchange {
     std::vector<Order> sellOrders_;
     std::vector<Order> buyOrders_;
     std::vector<Trade> completed_;
-    bool UserExists(const std::string& name);
-    void Sort();
+
     Account* GetUser(const std::string& name);
-    void ExecuteTrade();
+
+    bool UserExists(const std::string& name);
+    bool OrdersMatch();
+    void Sort();
+    void ExecuteTrade(Account* usr, const Order* order, const Order* match);
+    
+    
   public:
     
     // methods
       // functional
+    bool FindMatch(Order* find ,const Order& order);
     void MakeDeposit(const std::string &username, const std::string &asset_,
                      int amount);
     bool MakeWithdrawal(const std::string &username, const std::string &assent,
                         int amount);
     bool MakeWithdrawal(const std::string &username, Asset asset);
-
+    
     
     bool AddOrder(const Order &order);
 
