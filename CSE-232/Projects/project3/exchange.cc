@@ -73,14 +73,28 @@ bool Exchange::FindMatch(Order* find ,const Order& order){
 
 void Exchange::ExecuteTrade(Account* usr, const Order* order, const Order* match){
     // Execute a trade, optimize data
-    cout << "Trade is down to get smacked" << endl;
 
+    Account* other = GetUser(match->username);
+
+    cout << "\n----------------\n" << endl;
+
+    if (order->side == "Buy"){
+        Asset total("USD", (order->asset.volume * order->price));
+        if (usr->Withdraw(total)){
+            other->Withdraw(match->asset);
+            // cout << *usr << endl;
+            cout << *other << endl;
+
+        }
+    } else {
+        
+    }
 }
 
 bool Exchange::AddOrder(const Order &order){
     Account* usr = GetUser(order.username);
     Asset asset = order.asset;
-     // determine if theres a matching o
+    // determine if theres a matching order
 
     // Buy
     if (order.side == "Buy"){
@@ -90,9 +104,10 @@ bool Exchange::AddOrder(const Order &order){
             Order match;
             if (FindMatch(&match, order)){
                 ExecuteTrade(usr, &order, &match);
+                return true;
             } else {
                 buyOrders_.push_back(order);
-                cout << "Nobody willing to sell rn" << endl;
+                // print(buyOrders_);
             }
 
         } else {
@@ -105,10 +120,12 @@ bool Exchange::AddOrder(const Order &order){
             Order match;
             if (FindMatch(&match, order)){
                 ExecuteTrade(usr, &order, &match);
+                return true;
             } else {
                 sellOrders_.push_back(order);
-                cout << "We cant buy rn" << endl;
+                // print(sellOrders_);
             }
+
         } else {
             return false;
         }

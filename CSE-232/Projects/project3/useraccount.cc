@@ -37,9 +37,11 @@ bool Account::Withdraw(const Asset& asset){
         Asset a = *ptr;
         if (a.name == asset.name && a.volume >= asset.volume){
             a.volume -= asset.volume;
+            cout << a.volume << endl;
             if (a.volume == 0){
                 assets_.erase(ptr);
             }
+            cout << *this << endl;
             return true;
         }
     }

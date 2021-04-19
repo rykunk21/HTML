@@ -27,6 +27,7 @@ class Exchange {
     bool FindMatch(Order* find ,const Order& order);
     void MakeDeposit(const std::string &username, const std::string &asset_,
                      int amount);
+    bool MakeDeposit(const std::string &username, Asset asset);
     bool MakeWithdrawal(const std::string &username, const std::string &assent,
                         int amount);
     bool MakeWithdrawal(const std::string &username, Asset asset);

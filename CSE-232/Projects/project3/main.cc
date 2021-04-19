@@ -77,10 +77,10 @@ int main(){
   msu_base.MakeDeposit("Ofria", "BCH", 9);
 
   Order o_n{"Nahum", "Buy", "BTC", 10, 100};
-  Order s_n{"Dolson", "Sell", "BTC", 10, 100};
-  msu_base.AddOrder(o_n);
+  Order s_n{"Dolson", "Sell", "BTC", 8, 100};
+
   msu_base.AddOrder(s_n);
+  cout << msu_base.AddOrder(o_n) << endl;
   
 
-  
 }
